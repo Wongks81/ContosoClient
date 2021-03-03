@@ -1,0 +1,44 @@
+<br>
+<form [formGroup]="courseObj.courseFGroup">
+    <div class="border p-3">
+        <div class="row">
+            <h3 class="text-info pl-3">Add New Course</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Student Name row -->
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        Course Name
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="form-control" formControlName="cCourseName" [(ngModel)]="courseObj.CourseName" name="CourseName" placeholder="Enter Course Name"
+                        ngModel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div *ngIf="courseObj.courseFGroup.controls['cCourseName'].dirty" 
+                            [hidden]="!(courseObj.courseFGroup.controls['cCourseName'].hasError('required'))"
+                            style="text-align: center; color:red"><b>Course Name is required</b></div>
+                    </div>
+                </div>      
+
+                <!-- Buttons -->
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <!-- Leave it empty -->
+                    </div>
+                    <div class="col-sm-2 ">
+                        <button [disabled]="!(courseObj.courseFGroup.valid)" class="btn btn-success" type="Submit" style="min-width: 100px;" (click)="onSubmit()">Submit</button>
+                    </div>
+                    <div class="col-sm-2 ">
+                        <button class="btn btn-danger w-100" style="min-width: 100px;"  routerLink="/courses">Back</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

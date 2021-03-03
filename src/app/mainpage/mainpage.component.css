@@ -1,0 +1,18 @@
+.carousel-inner img {
+    width: 100%;
+    height: 90%;
+}
+
+.carousel-inner p{
+    color:white !important; 
+}
+
+.card-deck .card .card-body{
+    height:50%;
+}
+
+.card-deck .card .card-body p{
+    color:white;
+    font-size:24px;
+}
+

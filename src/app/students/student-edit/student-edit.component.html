@@ -1,0 +1,73 @@
+<br>
+<form [formGroup]="studObj.studentFGroup">
+    <div class="border p-3">
+        <div class="row">
+            <h3 class="text-info pl-3">Add New Student</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Student Name row -->
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        Student Name
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="form-control" formControlName="cStudentName" [(ngModel)]="studObj.StudentName" name="StudentName" placeholder="Enter Student Name"
+                        ngModel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div *ngIf="studObj.studentFGroup.controls['cStudentName'].dirty" 
+                            [hidden]="!(studObj.studentFGroup.controls['cStudentName'].hasError('required'))"
+                            style="text-align: center; color:red"><b>Student Name is required</b></div>
+                    </div>
+                </div>
+                    
+                <!-- Admission Date Datepicker -->
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        Admission Date
+                    </div>
+                    <div class="col-sm-9">
+                        <!--datepicker input-->
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" [(ngModel)]="studObj.AdmissionDate" placeholder="Choose a date" name="AdmissionDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Course Selection Dropdown -->
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        Course Name
+                    </div>
+                    <div class="col-sm-9">
+                        <select class="form-control" name="Course" [ngModelOptions]="{standalone: true}" [(ngModel)]="studObj.Course" >
+                            <option *ngFor="let c of courseList" [ngValue]="c">
+                                {{c.courseName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <!-- Leave it empty -->
+                    </div>
+                    <div class="col-sm-2 ">
+                        <button [disabled]="!(studObj.studentFGroup.valid)" class="btn btn-success" type="Submit" style="min-width: 100px;" (click)="onSubmit()">Submit</button>
+                    </div>
+                    <div class="col-sm-2 ">
+                        <button class="btn btn-danger w-100" style="min-width: 100px;"  routerLink="/students">Back</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

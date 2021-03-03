@@ -1,0 +1,37 @@
+/* class */
+.navbar{
+    padding-top: 15px;
+}
+
+.navbar ul li a{
+    font-size:medium;
+}
+
+.nav-brand{
+    vertical-align: center;
+}
+
+
+/* ids */
+#icon{
+    text-align: center;
+}
+
+
+/* on size change */
+@media(max-width:768px){
+    aside
+    {
+        height:15vh;
+    }
+    .navbar ul li nav-link{
+        font-size:large;
+    }    
+    
+}
+@media(min-width:769px){
+    aside
+    {
+        height:92vh;
+    }
+}

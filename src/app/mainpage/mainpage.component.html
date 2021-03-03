@@ -1,0 +1,121 @@
+
+
+            <br>
+            <!-- Carousel-->
+            <div id="MainPageCarousel" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#MainPageCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#MainPageCarousel" data-slide-to="1"></li>
+                    <li data-target="#MainPageCarousel" data-slide-to="2"></li>
+                </ul>
+        
+                <!--Slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../../assets/images/classroom1.jpg" alt="Classroom Pic" />
+                        <div class="carousel-caption">
+                            <h3>High Tech Classroom</h3>
+                            <p>Using technology to help students to have better understanding</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../assets/images/students1.jpg" alt="Students Pic" />
+                        <div class="carousel-caption">
+                            <h3>Multi-Racial Community</h3>
+                            <p>Multi-Racial environment with diverse culture</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../../assets/images/play1.jpg" alt="Play Pic" />
+                        <div class="carousel-caption">
+                            <h3>Work Hard ~ Play Harder</h3>
+                            <p>Clubs and societies to fuel student interest and ambition</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and Right -->
+                <a class="carousel-control-prev" href="#MainPageCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#MainPageCarousel" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+            
+            <br>
+            <!-- Modal -->
+            
+                <div class="text-center">
+                    <!-- insert modal here for disclaimer -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MainPageModal">
+                        Disclaimer
+                    </button>
+        
+                    <!-- The Modal -->
+                    <div class="modal fade" id="MainPageModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+        
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Disclaimer</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+        
+                                <!-- Modal body -->
+                                <div class="modal-body active">
+                                    <p>The pictures used in this site belongs to their respective owners. I do not own these pitcures.</p>
+                                    <p>Please send an email to baijiazi81@yahoo.com.sg if you are the owner and wished to have it removed</p>
+                                </div>
+        
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            <br>
+            <br />
+            <!-- Text cards -->
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Message from the Admins</h6>
+                        <p class="card-text">Welcome to Contoso University!!</p>
+                    </div>
+                </div>
+            </div>
+            <br />
+        
+            <!-- Statistical Cards-->
+            <div class="container">
+                <h3>Statistics</h3>
+                <div class="card-deck">
+                    <div class="card bg-success">
+                        <div class="card-body text-center" id="cardStudent">
+                            <p class="card-text">Students</p>
+                            <ng-container *ngFor="let item of dbCount">
+                                <div *ngIf="item.name === 'sCount'">
+                                    <p>{{item.count}}</p>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="card bg-danger ">
+                        <div class="card-body text-center" id="cardCourse">
+                            <p class="card-text">Courses</p>
+                            <ng-container *ngFor="let item of dbCount">
+                                <div *ngIf="item.name === 'cCount'">
+                                    <p>{{item.count}}</p>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+ 

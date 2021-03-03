@@ -1,0 +1,48 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 my-auto h3">
+            List Of Students
+        </div>
+        <div class="col-sm-4 my-auto h3">
+            <a class="btn btn-success fa-pull-right" routerLink="/students/student-edit">
+                <i class="fas fa-plus"> Add Student</i>
+            </a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width:10%">ID</th>
+            <th style="width:25%">Student Name</th>
+            <th style="width:25%">Course Name</th>
+            <th style="width:20%">Admission Date</th>
+            <th style="width:10%"></th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of studList">
+            <th scope="row">{{item.studentId}}</th>
+            <td>{{item.studentName}}</td>
+            <td>{{item.course.courseName}}</td>
+            <td>{{item.admissionDate | date : "dd/MM/yyyy"}}</td>
+            <td class="text-center">
+                <div class="w-75 btn-group" role="group">
+                    <button class="btn btn-primary mx-2" style="min-width: 100px;">
+                        Edit
+                    </button>
+                </div>
+            </td>
+            <td class="text-center">
+                <div class="w-75 btn-group" role="group">
+                    <button class="btn btn-danger mx-2" style="min-width: 100px;">
+                        Delete
+                    </button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

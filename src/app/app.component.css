@@ -1,0 +1,16 @@
+.jumbotron {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#mainWindow{
+    height:90vh;
+    overflow:auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+#mainWindow::-webkit-scrollbar {
+    display: none;
+}

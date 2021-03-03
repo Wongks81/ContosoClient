@@ -1,0 +1,6 @@
+24/02/21 - to explore Model Views which stores multiple model details in C# 
+to display all properties of students and courses
+
+28/2/21
+- Courses save changes ok, no validation
+- Student save changes will save course object as well... debugging

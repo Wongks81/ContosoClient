@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { map } from "rxjs/operators";
 import { Course } from "../courses/courses.model";
 
@@ -9,15 +10,13 @@ import { Course } from "../courses/courses.model";
 @Injectable({providedIn: 'root'})
 export class CourseService{
 
-    constructor( private http:HttpClient){}
-    coursesList=[];
-    courseData :Course = new Course();
+    constructor( private http:HttpClient, private router:Router){}
 
-    addCourse(courseObj : Course)
+    addCourse(obj : Course)
     {
        // if(this.courseObj.CourseId == null){
       //Add new Course the id is null
-      return this.http.post("https://localhost:44348/api/CourseAPI", courseObj)
+      return this.http.post("https://localhost:44348/api/CourseAPI", obj)
     }
     fetchCourses(){
         
@@ -33,5 +32,12 @@ export class CourseService{
         ))
       }
 
-     
+      editCourse(id){
+        return this.http.get<{[key:string]:Course}>('https://localhost:44348/api/CourseAPI/' + id )
+                  .pipe(map( res => {
+                    const courseArr : any = [];
+                    courseArr.push(res);
+                    return courseArr;
+                }));
+      }
 }

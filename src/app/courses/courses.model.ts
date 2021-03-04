@@ -2,10 +2,10 @@ import { Student } from "../students/students.model";
 import { NgForm,FormGroup,FormControl,Validators,FormBuilder } from "@angular/forms";
 
 export class Course{
-    CourseId: number;
-    CourseName: string;
+    courseId: number;
+    courseName: string;
     //1 Course can have alot of students
-    Students: Array<Student> = new Array<Student>();
+    students: Array<Student> = new Array<Student>();
 
     courseFGroup : FormGroup;
 

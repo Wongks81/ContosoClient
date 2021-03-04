@@ -23,11 +23,7 @@ export class CoursesComponent implements OnInit {
   }
 
   editCourse(id){
-    this.http.get<{[key:string]:Course}>('https://localhost:44348/api/CourseAPI/' + id )
-    .subscribe(respondData => {
-      console.log(respondData);
-      this.router.navigate(['/courses/course-edit', id, {CN:respondData.courseName}]);
-    }); 
+    this.router.navigate(['/courses/course-edit', id]);
   }
 
   loadCourses(){

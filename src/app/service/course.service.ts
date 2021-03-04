@@ -44,4 +44,8 @@ export class CourseService{
       updateCourse(id : number, obj : Course){
         return this.http.put('https://localhost:44348/api/CourseAPI/' + id , obj);
       }
+
+      deleteCourse(id : number){
+        return this.http.delete('https://localhost:44348/api/CourseAPI/' + id);
+      }
 }

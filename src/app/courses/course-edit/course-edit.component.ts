@@ -19,7 +19,8 @@ export class CourseEditComponent implements OnInit {
   constructor(private http:HttpClient, 
               private route:ActivatedRoute,
               private courseService : CourseService) { 
-               //this.id = Number(this.route.snapshot.paramMap.get('id'))
+               this.id = Number(this.route.snapshot.paramMap.get('id')) ? 
+                          Number(this.route.snapshot.paramMap.get('id')) : 0;
               }
 
   ngOnInit(): void {
@@ -27,8 +28,8 @@ export class CourseEditComponent implements OnInit {
     //   this.courseObj.CourseId = Number(this.route.snapshot.paramMap.get('id'));
     //   this.courseObj.CourseName = this.route.snapshot.paramMap.get('CN');
     // }
-    if(Number(this.route.snapshot.paramMap.get('id'))){
-      this.courseService.editCourse(this.route.snapshot.paramMap.get('id'))
+    if(this.id != 0){
+      this.courseService.getSelectedCourse(this.route.snapshot.paramMap.get('id'))
           .subscribe(respondData => {
           this.courseData= respondData[0];    //get the 1st or only record from the response
           this.courseObj.courseFGroup.controls.cCourseName.setValue(this.courseData['courseName']);
@@ -43,17 +44,22 @@ export class CourseEditComponent implements OnInit {
     //Brackets is the form group NAME that you have assigned
     var courseDTO : any = _.omit(this.courseObj,['courseFGroup'])
 
-    if(Number(this.route.snapshot.paramMap.get('id'))){
+    if(this.id != 0){
       //Edit section
-      
+      this.courseService.updateCourse(this.id, courseDTO)
+        .subscribe(
+          res =>this.Success(res),
+          res => this.Error(res)
+      );
     }
     else
     {
       //Add section
       this.courseService.addCourse(courseDTO)
-        .subscribe(resData =>{
-          console.log(resData);
-        })
+        .subscribe(
+          res =>this.Success(res),
+          res => this.Error(res)
+      );
     }
   }
   Success(res){

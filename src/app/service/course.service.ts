@@ -32,12 +32,16 @@ export class CourseService{
         ))
       }
 
-      editCourse(id){
+      getSelectedCourse(id){
         return this.http.get<{[key:string]:Course}>('https://localhost:44348/api/CourseAPI/' + id )
                   .pipe(map( res => {
                     const courseArr : any = [];
                     courseArr.push(res);
                     return courseArr;
                 }));
+      }
+
+      updateCourse(id : number, obj : Course){
+        return this.http.put('https://localhost:44348/api/CourseAPI/' + id , obj);
       }
 }

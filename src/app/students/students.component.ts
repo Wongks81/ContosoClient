@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 
 import { Student } from "./students.model";
 import { Router } from '@angular/router';
+import { StudentService } from "../service/student.service";
 
 @Component({
   selector: 'app-students',
@@ -11,29 +12,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
-  studList =[];
-  constructor(private http:HttpClient) { }
+  studList :any =[];
+  constructor(private http:HttpClient,
+              private studentService:StudentService,
+              private router:Router,
+             ) { }
 
   ngOnInit(): void {
     this.fetchStudent();
   }
 
-  private fetchStudent(){
-    this.http.get<Student[]>('https://localhost:44348/api/StudentAPI')
-    .pipe(map(
-      responseData =>{
-        const countArray : any = [];
-        for(const item in responseData){
-          countArray.push({...responseData[item]});
-        }
-        return countArray;
-      }
-    ))
-    .subscribe(respondData => {
-      this.studList = respondData;
-      console.log(this.studList);
+  fetchStudent(){
+    this.studentService.fetchStudents()
+      .subscribe(
+        res=>{
+          this.studList = res;
+        },
+        res=>this.Error
+      )
+  }
+
+  editStudent(selected:Student){
+    this.router.navigate(['/students/student-edit'],
+    {
+      //pass the object to a variable call student as extra options
+      state : {student:selected}
     });
   }
- 
 
+  Success(res){}
+  Error(res){
+    alert(res);
+  }
 }

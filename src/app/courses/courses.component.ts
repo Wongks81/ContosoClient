@@ -24,7 +24,7 @@ export class CoursesComponent implements OnInit {
   }
 
   editCourse(id){
-    this.router.navigate(['/courses/course-edit', id]);
+    this.router.navigate(['/courses/course-edit', id]); 
   }
 
   loadCourses(){

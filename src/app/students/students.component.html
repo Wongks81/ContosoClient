@@ -5,7 +5,7 @@
             List Of Students
         </div>
         <div class="col-sm-4 my-auto h3">
-            <a class="btn btn-success fa-pull-right" routerLink="/students/student-edit">
+            <a class="btn btn-success fa-pull-right" routerLink="/students/student-edit" [state]="{state : {student:null}}">
                 <i class="fas fa-plus"> Add Student</i>
             </a>
         </div>
@@ -30,7 +30,7 @@
             <td>{{item.admissionDate | date : "dd/MM/yyyy"}}</td>
             <td class="text-center">
                 <div class="w-75 btn-group" role="group">
-                    <button class="btn btn-primary mx-2" style="min-width: 100px;">
+                    <button class="btn btn-primary mx-2" style="min-width: 100px;" (click)="editStudent(item)">
                         Edit
                     </button>
                 </div>

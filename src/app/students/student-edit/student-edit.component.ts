@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Course } from "../../courses/courses.model";
 import { map } from "rxjs/operators";
 import { Student } from '../students.model';
+import { Router } from '@angular/router';
+import * as _ from "lodash";
 
 
 @Component({
@@ -14,7 +16,23 @@ export class StudentEditComponent implements OnInit {
 
   courseList =[];
   studObj = new Student();
-  constructor(private http:HttpClient) { }
+  constructor(public router:Router ,private http:HttpClient ) { 
+        
+    //state from .router.navigate
+     if(this.router.getCurrentNavigation().extras.state.student != null){
+       var std:any = this.router.getCurrentNavigation().extras.state.student;
+       this.studObj = new Student();
+       this.studObj.StudentId = std.studentId;
+       this.studObj.StudentName = std.studentName;
+       this.studObj.AdmissionDate = std.admissionDate;
+       this.studObj.CourseId = std.courseId;
+       this.studObj.Course = std.course;
+       
+    }
+    
+    
+
+  }
 
   ngOnInit(): void {
     this.fetchCourses();
@@ -22,7 +40,6 @@ export class StudentEditComponent implements OnInit {
   
   private fetchCourses(){
     //https://localhost:44348/ - new
-    //https://localhost:44344 - old
     this.http.get<{[key:string]:Course}>('https://localhost:44348/Course/returnJSONCourses')
     .pipe(map(
       responseData =>{
@@ -35,19 +52,37 @@ export class StudentEditComponent implements OnInit {
     ))
     .subscribe(respondData => {
       this.courseList = respondData;
-      console.log(this.courseList);
     });
   }
   
   onSubmit(){
-    console.log(this.studObj);
-    this.http.post("https://localhost:44348/api/StudentAPI", this.studObj)
+    var studentDTO : any = _.omit(this.studObj,['studentFGroup']);
+    studentDTO = _.omit(studentDTO,['courseFGroup']);
+    this.http.post("https://localhost:44348/api/StudentAPI", studentDTO)
     .subscribe(
       res=>this.Success(res),
       res=>this.Error(res));
     console.log(this.studObj);
     console.log("Submitted!");
   }
+
+  // onSubmit(selected: Student){
+  //   //prevent circular error, remove formGroup details from object
+  //   //Brackets is the form group NAME that you have assigned
+  //   if(selected == null){
+  //       alert("none selected!!");
+  //   }
+    
+  //   else{
+  //     alert("selected!!");
+  //   }
+  //}
+
+  
+
+
+
+
   Success(res){
     alert("Request Completed!");
   }

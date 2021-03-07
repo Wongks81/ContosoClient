@@ -17,6 +17,9 @@ import { AboutComponent } from './about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { Student } from './students/students.model';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 
 
@@ -46,7 +49,9 @@ import { CourseEditComponent } from './courses/course-edit/course-edit.component
     ReactiveFormsModule
     
   ],
-  providers: [],
+  providers: [
+              {provide: MAT_DATE_LOCALE, useValue: 'en-SG'},
+            ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

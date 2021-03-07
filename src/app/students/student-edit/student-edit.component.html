@@ -45,10 +45,12 @@
                         Course Name
                     </div>
                     <div class="col-sm-9">
-                        <select class="form-control" name="Course" [ngModelOptions]="{standalone: true}" [(ngModel)]="studObj.Course" >
+                        <!-- TO CHECK HOW TO LOAD THE SELECTED VALUE IN DROPDOWN-->
+                        <select class="form-control" name="Course" [(ngModel)]="studObj.Course">
                             <option *ngFor="let c of courseList" [ngValue]="c">
                                 {{c.courseName}}
                             </option>
+                        
                         </select>
                     </div>
                 </div>

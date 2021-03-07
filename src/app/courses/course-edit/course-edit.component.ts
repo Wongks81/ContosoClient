@@ -24,10 +24,7 @@ export class CourseEditComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    // if(Number(this.route.snapshot.paramMap.get('id'))){
-    //   this.courseObj.CourseId = Number(this.route.snapshot.paramMap.get('id'));
-    //   this.courseObj.CourseName = this.route.snapshot.paramMap.get('CN');
-    // }
+    
     if(this.id != 0){
       this.courseService.getSelectedCourse(this.route.snapshot.paramMap.get('id'))
           .subscribe(respondData => {

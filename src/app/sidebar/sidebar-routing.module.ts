@@ -24,7 +24,7 @@ const sidebarRoutes: Routes = [
     CommonModule,
     RouterModule.forRoot(
       sidebarRoutes,
-      {enableTracing: true} //<--for debugging purposes only
+      //{enableTracing: true} //<--for debugging purposes only
     ),
   ],
   exports: [

@@ -16,7 +16,8 @@ export class Student{
 
         var vStudentName =[];
         vStudentName.push(Validators.required);
-        vStudentName.push(Validators.pattern("^[a-zA-Z]{3,10}$"));
+        // vStudentName.push(Validators.pattern("^[a-zA-Z]{3,10}$"));
+        vStudentName.push(Validators.pattern("[a-zA-Z ]*"));
         this.studentFGroup.addControl("cStudentName", new FormControl('', Validators.compose(vStudentName)));
         //this.studentFGroup.addControl("ddCourseName", new FormControl(Student));
     }

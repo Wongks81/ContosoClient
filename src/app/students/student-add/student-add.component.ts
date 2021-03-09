@@ -19,10 +19,17 @@ export class StudentAddComponent implements OnInit {
   constructor(public router:Router ,
               private http:HttpClient,
               private studentService: StudentService,
-              private courseService : CourseService  ) {}
+              private courseService : CourseService,
+               ) {}
   
   ngOnInit(): void {
     this.fetchCourses();
+  }
+
+  getDefaultDate(){
+    let d = new Date();
+    d.setDate(d.getDate());
+    return d
   }
 
   fetchCourses(){
@@ -50,7 +57,9 @@ export class StudentAddComponent implements OnInit {
   }
 
   Success(res){
+    this.router.navigateByUrl('/students');
     alert("Request Completed!");
+
   }
   Error(res){
     alert("Error" + res );

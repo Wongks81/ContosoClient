@@ -19,6 +19,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { Student } from './students/students.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { StudentAddComponent } from './students/student-add/student-add.component';
 
 
 
@@ -35,6 +36,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     StudentEditComponent,
     AboutComponent,
     CourseEditComponent,
+    StudentAddComponent,
    
   ],
   imports: [

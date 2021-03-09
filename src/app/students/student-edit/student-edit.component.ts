@@ -5,6 +5,8 @@ import { map } from "rxjs/operators";
 import { Student } from '../students.model';
 import { Router } from '@angular/router';
 import * as _ from "lodash";
+import { StudentService } from 'src/app/service/student.service';
+import { CourseService } from 'src/app/service/course.service';
 
 
 @Component({
@@ -16,54 +18,61 @@ export class StudentEditComponent implements OnInit {
 
   courseList =[];
   studObj = new Student();
-  constructor(public router:Router ,private http:HttpClient ) { 
-        
-    //state from .router.navigate
-     if(this.router.getCurrentNavigation().extras.state.student != null){
-       var std:any = this.router.getCurrentNavigation().extras.state.student;
-       this.studObj = new Student();
-       this.studObj.StudentId = std.studentId;
-       this.studObj.StudentName = std.studentName;
-       this.studObj.AdmissionDate = std.admissionDate;
-       this.studObj.CourseId = std.courseId;
-       this.studObj.Course = std.course;
-       
-    }
-    
-    
+  editFlag :boolean = false;
+  constructor(public router:Router ,
+              private http:HttpClient,
+              private studentService: StudentService,
+              private courseService : CourseService  ) { 
 
+    //state from .router.navigate
+    if(this.router.getCurrentNavigation().extras.state.student != null){
+      var std:any = this.router.getCurrentNavigation().extras.state.student;
+      this.studObj = new Student();
+      this.studObj.StudentId = std.studentId;
+      this.studObj.StudentName = std.studentName;
+      this.studObj.AdmissionDate = std.admissionDate;
+      this.studObj.CourseId = std.courseId;
+      this.studObj.Course = std.course;
+      this.editFlag = true;
+      
+   }
+   else{
+     this.editFlag = false;
+   }
   }
 
   ngOnInit(): void {
     this.fetchCourses();
   }
-  
-  private fetchCourses(){
-    //https://localhost:44348/ - new
-    this.http.get<{[key:string]:Course}>('https://localhost:44348/Course/returnJSONCourses')
-    .pipe(map(
-      responseData =>{
-        const countArray : any = [];
-        for(const item in responseData){
-          countArray.push({...responseData[item]});
-        }
-        return countArray;
-      }
-    ))
-    .subscribe(respondData => {
-      this.courseList = respondData;
-    });
+
+  fetchCourses(){
+    this.courseService.fetchCourses()
+    .subscribe(response =>{
+      this.courseList = response;
+    })
   }
   
   onSubmit(){
-    var studentDTO : any = _.omit(this.studObj,['studentFGroup']);
-    studentDTO = _.omit(studentDTO,['courseFGroup']);
-    this.http.post("https://localhost:44348/api/StudentAPI", studentDTO)
-    .subscribe(
-      res=>this.Success(res),
-      res=>this.Error(res));
-    console.log(this.studObj);
-    console.log("Submitted!");
+    // var studentDTO : any = _.omit(this.studObj,['studentFGroup']);
+    var studentDTO:any ={
+      StudentId : this.studObj.StudentId,
+      StudentName : this.studObj.StudentName,
+      AdmissionDate : this.studObj.AdmissionDate,
+      CourseId : this.studObj.Course.courseId,
+      Course : this.studObj.Course
+    };
+
+    // this.studentService.addStudent(studentDTO)
+    //  .subscribe(
+    //    res=>this.Success(res),
+    //    res=>this.Error(res));
+
+    //this works
+    //TO CONSIDER TO CREATE 2 SEPERATE COMPONENTS for ADD AND UPDATE
+    this.studentService.updateCourse(this.studObj.StudentId,studentDTO)
+     .subscribe(
+       res=>this.Success(res),
+       res=>this.Error(res));
   }
 
   // onSubmit(selected: Student){

@@ -8,7 +8,6 @@ export class Student{
     CourseId : number;
     //1 student -> 1 course
     Course : Course = new Course();
-    //Courses: Array<Course> = new Array<Course>();
 
     studentFGroup : FormGroup;
 
@@ -19,5 +18,6 @@ export class Student{
         vStudentName.push(Validators.required);
         vStudentName.push(Validators.pattern("^[a-zA-Z]{3,10}$"));
         this.studentFGroup.addControl("cStudentName", new FormControl('', Validators.compose(vStudentName)));
+        //this.studentFGroup.addControl("ddCourseName", new FormControl(Student));
     }
 }

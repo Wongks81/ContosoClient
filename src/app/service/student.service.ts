@@ -20,8 +20,8 @@ export class StudentService{
         return this.http.get('https://localhost:44348/api/StudentAPI');
     }
 
-    editStudent(){
-        
+    updateCourse(id : number, obj : Student){
+      return this.http.put('https://localhost:44348/api/StudentAPI/' + id , obj);
     }
 
 }

@@ -12,7 +12,7 @@
                         Student Name
                     </div>
                     <div class="col-sm-9">
-                        <input class="form-control" formControlName="cStudentName" [(ngModel)]="studObj.StudentName" name="StudentName" placeholder="Enter Student Name"
+                        <input class="form-control" formControlName="cStudentName" [(ngModel)]="studObj.studentName" name="StudentName" placeholder="Enter Student Name"
                         ngModel>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <div class="col-sm-9">
                         <!--datepicker input-->
                         <mat-form-field>
-                            <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" [(ngModel)]="studObj.AdmissionDate" placeholder="Choose a date" name="AdmissionDate">
+                            <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" [(ngModel)]="studObj.admissionDate" placeholder="Choose a date" name="AdmissionDate">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-sm-9">
                         <!-- TO CHECK HOW TO LOAD THE SELECTED VALUE IN DROPDOWN-->
-                        <select class="form-control" name="Course" [(ngModel)]="studObj.Course.courseId" [ngModelOptions]="{standalone: true}">
+                        <select class="form-control" name="Course" [(ngModel)]="studObj.course.courseId" [ngModelOptions]="{standalone: true}">
                             <option *ngFor="let c of courseList" [ngValue]="c.courseId" >
                                 {{c.courseName}}
                             </option>

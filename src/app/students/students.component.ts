@@ -40,7 +40,20 @@ export class StudentsComponent implements OnInit {
     });
   }
 
-  Success(res){}
+  deleteStudent(selected:Student){
+    var reply = confirm("Remove " + selected.studentName + " from Database?");
+    if(reply == true){
+      this.studentService.deleteStudent(selected.studentId)
+      .subscribe(
+        res =>this.Success(res),
+        res => this.Error(res)
+    );     
+    }
+  }
+
+  Success(res){
+    this.ngOnInit();
+  }
   Error(res){
     alert(res);
   }

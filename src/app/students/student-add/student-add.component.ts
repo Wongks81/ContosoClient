@@ -42,11 +42,11 @@ export class StudentAddComponent implements OnInit {
   onSubmit(){
     // var studentDTO : any = _.omit(this.studObj,['studentFGroup']);
     var studentDTO:any ={
-      StudentId : this.studObj.StudentId,
-      StudentName : this.studObj.StudentName,
-      AdmissionDate : this.studObj.AdmissionDate,
-      CourseId : this.studObj.Course.courseId,
-      Course : this.studObj.Course
+      StudentId : this.studObj.studentId,
+      StudentName : this.studObj.studentName,
+      AdmissionDate : this.studObj.admissionDate,
+      CourseId : this.studObj.course.courseId,
+      Course : this.studObj.course
     };
 
     this.studentService.addStudent(studentDTO)

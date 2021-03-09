@@ -4,7 +4,6 @@ import { Course } from "../../courses/courses.model";
 import { map } from "rxjs/operators";
 import { Student } from '../students.model';
 import { Router } from '@angular/router';
-import * as _ from "lodash";
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
 
@@ -28,11 +27,11 @@ export class StudentEditComponent implements OnInit {
     if(this.router.getCurrentNavigation().extras.state.student != null){
       var std:any = this.router.getCurrentNavigation().extras.state.student;
       this.studObj = new Student();
-      this.studObj.StudentId = std.studentId;
-      this.studObj.StudentName = std.studentName;
-      this.studObj.AdmissionDate = std.admissionDate;
-      this.studObj.CourseId = std.courseId;
-      this.studObj.Course = std.course;
+      this.studObj.studentId = std.studentId;
+      this.studObj.studentName = std.studentName;
+      this.studObj.admissionDate = std.admissionDate;
+      this.studObj.courseId = std.courseId;
+      this.studObj.course = std.course;
       this.editFlag = true;
       
    }
@@ -53,46 +52,23 @@ export class StudentEditComponent implements OnInit {
   }
   
   onSubmit(){
-    // var studentDTO : any = _.omit(this.studObj,['studentFGroup']);
     var studentDTO:any ={
-      StudentId : this.studObj.StudentId,
-      StudentName : this.studObj.StudentName,
-      AdmissionDate : this.studObj.AdmissionDate,
-      CourseId : this.studObj.Course.courseId,
-      Course : this.studObj.Course
+      StudentId : this.studObj.studentId,
+      StudentName : this.studObj.studentName,
+      AdmissionDate : this.studObj.admissionDate,
+      CourseId : this.studObj.course.courseId,
+      Course : this.studObj.course
     };
 
-    // this.studentService.addStudent(studentDTO)
-    //  .subscribe(
-    //    res=>this.Success(res),
-    //    res=>this.Error(res));
-
-    //this works
-    //TO CONSIDER TO CREATE 2 SEPERATE COMPONENTS for ADD AND UPDATE
-    this.studentService.updateCourse(this.studObj.StudentId,studentDTO)
+    this.studentService.updateStudent(this.studObj.studentId,studentDTO)
      .subscribe(
        res=>this.Success(res),
        res=>this.Error(res));
   }
 
-  // onSubmit(selected: Student){
-  //   //prevent circular error, remove formGroup details from object
-  //   //Brackets is the form group NAME that you have assigned
-  //   if(selected == null){
-  //       alert("none selected!!");
-  //   }
-    
-  //   else{
-  //     alert("selected!!");
-  //   }
-  //}
-
   
-
-
-
-
   Success(res){
+    this.router.navigateByUrl('/students');
     alert("Request Completed!");
   }
   Error(res){

@@ -2,12 +2,12 @@ import { Course } from "../courses/courses.model";
 import { NgForm,FormGroup,FormControl,Validators,FormBuilder } from "@angular/forms";
 
 export class Student{
-    StudentId : number;
-    StudentName : string;
-    AdmissionDate : Date;
-    CourseId : number;
+    studentId : number;
+    studentName : string;
+    admissionDate : Date;
+    courseId : number;
     //1 student -> 1 course
-    Course : Course = new Course();
+    course : Course = new Course();
 
     studentFGroup : FormGroup;
 

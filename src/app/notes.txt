@@ -4,3 +4,11 @@ to display all properties of students and courses
 28/2/21
 - Courses save changes ok, no validation
 - Student save changes will save course object as well... debugging
+
+09/03/21
+-Still pending, refreshing on edit page will have error
+    :- to study on ngrx state stuff
+    
+-Still trying to see how I can default the student add date to today
+
+-Date Validators?

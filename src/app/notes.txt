@@ -10,5 +10,11 @@ to display all properties of students and courses
     :- to study on ngrx state stuff
     
 -Still trying to see how I can default the student add date to today
+    - fixed by setting this.obj.admissionDate to new Date()
 
 -Date Validators?
+    - for the moment disable key in input
+
+Issues:
+-Still pending, refreshing on edit page will have error
+    :- to study on ngrx state stuff

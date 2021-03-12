@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Course } from '../courses.model';
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from "../../service/course.service";
 import * as _ from "lodash";
-import { map } from 'rxjs/operators';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-course-edit',
@@ -18,7 +17,8 @@ export class CourseEditComponent implements OnInit {
   id:number = 0 ;
   constructor(private http:HttpClient, 
               private route:ActivatedRoute,
-              private courseService : CourseService) { 
+              private courseService : CourseService,
+              private router:Router) { 
                this.id = Number(this.route.snapshot.paramMap.get('id')) ? 
                           Number(this.route.snapshot.paramMap.get('id')) : 0;
               }
@@ -61,6 +61,7 @@ export class CourseEditComponent implements OnInit {
   }
   Success(res){
     alert("Request Completed!");
+    this.router.navigateByUrl('/courses');
   }
   Error(res){
     alert("Error" );

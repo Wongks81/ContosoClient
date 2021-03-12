@@ -32,10 +32,10 @@
                     <div class="col-sm-9">
                         <!--datepicker input-->
                         <mat-form-field>
-                            <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" 
+                            <input matInput [matDatepicker]="picker" disabled [ngModelOptions]="{standalone: true}" 
                             [(ngModel)]="studObj.admissionDate" placeholder="Choose a date" name="AdmissionDate">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-datepicker #picker disabled="false"></mat-datepicker>
                         </mat-form-field>
                     </div>
                 </div>

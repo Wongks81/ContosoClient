@@ -46,6 +46,7 @@ export class CoursesComponent implements OnInit {
     }
   }
   Success(res){
+    this.ngOnInit();
     alert("Request Completed!");
   }
   Error(res){

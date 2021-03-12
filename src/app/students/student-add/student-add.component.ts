@@ -24,12 +24,7 @@ export class StudentAddComponent implements OnInit {
   
   ngOnInit(): void {
     this.fetchCourses();
-  }
-
-  getDefaultDate(){
-    let d = new Date();
-    d.setDate(d.getDate());
-    return d
+    this.studObj.admissionDate = new Date();
   }
 
   fetchCourses(){
